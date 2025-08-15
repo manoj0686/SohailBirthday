@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Wish</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    body {
+        background: linear-gradient(135deg, #0b0e45, #431161);
+        color: white;
+        font-family: Arial, sans-serif;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    /* Floating hearts background */
+    .heart {
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        background: red;
+        transform: rotate(45deg);
+        animation: floatUp 8s linear infinite;
+        z-index: 0;
+    }
+    .heart::before, .heart::after {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: inherit;
+        border-radius: 50%;
+    }
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: -10px; top: 0; }
+    @keyframes floatUp {
+        0% { transform: translateY(100vh) rotate(45deg); opacity: 1; }
+        100% { transform: translateY(-10vh) rotate(45deg); opacity: 0; }
+    }
+
+    .birthday-card {
+        position: relative;
+        z-index: 1;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0px 4px 20px rgba(0,0,0,0.3);
+        animation: fadeIn 1.5s ease-in-out;
+    }
+    .age-circle {
+        background-color: #ffbad2;
+        color: black;
+        display: inline-block;
+        padding: 15px;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        font-weight: bold;
+        animation: pop 1s ease-in-out infinite alternate;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pop {
+        from { transform: scale(1); }
+        to { transform: scale(1.1); }
+    }
+
+    /* Modal hearts */
+    .modal-heart {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: pink;
+        transform: rotate(45deg);
+        animation: modalHeartAnim 3s linear infinite;
+    }
+    .modal-heart::before, .modal-heart::after {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: inherit;
+        border-radius: 50%;
+    }
+    .modal-heart::before { top: -10px; left: 0; }
+    .modal-heart::after { left: -10px; top: 0; }
+
+    @keyframes modalHeartAnim {
+        0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+        100% { transform: translateY(-50px) rotate(45deg); opacity: 0; }
+    }
+</style>
+</head>
+<body>
+
+<!-- Floating hearts background -->
+<script>
+for(let i=0; i<30; i++){
+    let heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = Math.random()*100 + 'vw';
+    heart.style.animationDuration = (5 + Math.random()*5) + 's';
+    heart.style.background = Math.random() > 0.5 ? 'red' : 'pink';
+    heart.style.width = heart.style.height = (10 + Math.random()*20) + 'px';
+    document.body.appendChild(heart);
+}
+</script>
+
+<div class="birthday-card">
+    <h5>🎉 Happy Birthday 🎉</h5>
+    <h1>Happy 26th Birthday, <br> Mohammed Sohail! </h1>
+    <h1><span class="age-circle">26</span></h1>
+    <p>Wishing you a year full of joy, health, and dreams coming true. <b>I love you no matter what.</b> ❤️</p>
+    <div class="mt-4">
+        <button class="btn btn-info me-2" onclick="showConfettiModal()">Play Birthday Wish ✨</button>
+    </div>
+    <p class="mt-3"><i>“In case you ever foolishly forget: I am never not loving you.”</i></p>
+</div>
+
+<!-- Confetti Modal -->
+<div class="modal fade" id="confettiModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content text-center bg-dark text-white position-relative overflow-hidden">
+      <div class="modal-header border-0">
+        <h5 class="modal-title">🎉 Happy Birthday 🎉</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body position-relative">
+        <img id="slideshowImage" src="" alt="Birthday" class="img-fluid  mb-3" width="300">
+        <h4>Wishing you a day as special as you are! 💖</h4>
+        <audio id="birthdaySong" src="WhatsApp Audio 2025-08-15 at 1.15.16 PM.ogg" preload="auto"></audio>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Bootstrap & JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script>
+    const imageList = [
+        "WhatsApp Image 2025-08-15 at 1.10.18 PM.jpeg",
+        "WhatsApp Image 2025-08-15 at 1.10.19 PM (1).jpeg",
+        "WhatsApp Image 2025-08-15 at 1.10.19 PM.jpeg",
+        "WhatsApp Image 2025-08-15 at 1.10.20 PM.jpeg",
+        "WhatsApp Image 2025-08-14 at 10.51.01 PM.jpeg",
+        "WhatsApp Image 2025-08-14 at 10.53.23 PM.jpeg",
+        "WhatsApp Image 2025-08-14 at 10.46.44 PM.jpeg",
+        "ghibli.png"
+    ];
+
+    let slideIndex = 0;
+    let slideshowInterval;
+    let heartInterval;
+
+    function startSlideshow() {
+        const imgElement = document.getElementById('slideshowImage');
+        slideIndex = 0;
+        imgElement.src = imageList[slideIndex];
+        slideshowInterval = setInterval(() => {
+            slideIndex = (slideIndex + 1) % imageList.length;
+            imgElement.src = imageList[slideIndex];
+        }, 2000);
+    }
+
+    function showConfettiModal() {
+        
+        let modal = new bootstrap.Modal(document.getElementById('confettiModal'));
+        modal.show();
+
+        // Play Happy Birthday song
+        let song = document.getElementById('birthdaySong');
+        song.currentTime = 0;
+        song.play();
+
+        // Start slideshow
+        startSlideshow();
+
+        // Hearts inside modal
+        heartInterval = setInterval(() => {
+            let heart = document.createElement('div');
+            heart.className = 'modal-heart';
+            heart.style.left = (50 + (Math.random()*100 - 50)) + '%';
+            heart.style.top = '50%';
+            heart.style.background = Math.random() > 0.5 ? 'red' : 'pink';
+            document.querySelector('#confettiModal .modal-body').appendChild(heart);
+            setTimeout(() => heart.remove(), 3000);
+        }, 300);
+
+        // Confetti burst
+        var duration = 1500;
+        var end = Date.now() + duration;
+        (function frame() {
+            confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 } });
+            confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 } });
+            if (Date.now() < end) requestAnimationFrame(frame);
+        }());
+
+        // Stop everything on modal close
+        document.getElementById('confettiModal').addEventListener('hidden.bs.modal', () => {
+            song.pause();
+            clearInterval(slideshowInterval);
+            clearInterval(heartInterval);
+        }, { once: true });
+    }
+
+    function showVideoModal() {
+        let modal = new bootstrap.Modal(document.getElementById('videoModal'));
+        modal.show();
+        let video = document.getElementById('modalVideo');
+        video.currentTime = 0;
+        video.play();
+    }
+</script>
+
+</body>
+</html>
